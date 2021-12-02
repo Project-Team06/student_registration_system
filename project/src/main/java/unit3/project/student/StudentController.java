@@ -3,6 +3,7 @@ package unit3.project.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import unit3.project.course.Course;
 
 import java.util.List;
 
@@ -41,4 +42,8 @@ public class StudentController {
     public void updateStudent(@PathVariable String id, @RequestBody Student data){
         StudentService.updateStudent(id, data);
     }
+//    @PostMapping("/enroll")
+//    public void enrollStudent(Course course, Student student){
+//        StudentService.enrollStudent(course,student);
+//    }
 }

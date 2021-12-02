@@ -1,6 +1,11 @@
 package unit3.project.student;
 
+import unit3.project.course.Course;
+import unit3.project.schedule.Schedule;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name="Student")
@@ -13,12 +18,16 @@ public class Student {
     private String email;
     private String gender;
 
-    public Student(long id, String fName, String lName, String email, String gender) {
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Course> courses = new ArrayList<>();
+
+    public Student(long id, String fName, String lName, String email, String gender, Collection<Course> courses) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
         this.email = email;
         this.gender = gender;
+        this.courses = courses;
     }
 
     public Student(){
@@ -65,6 +74,22 @@ public class Student {
         this.gender = gender;
     }
 
+    public Collection<Course> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Collection<Course> courses) {
+        this.courses = courses;
+    }
+
+//    public Collection<Schedule> getSchedules() {
+//        return schedules;
+//    }
+//
+//    public void setSchedules(Collection<Schedule> schedules) {
+//        this.schedules = schedules;
+//    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -75,4 +100,5 @@ public class Student {
                 ", gender='" + gender + '\'' +
                 '}';
     }
+
 }
