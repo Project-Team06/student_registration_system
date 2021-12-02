@@ -1,8 +1,14 @@
 package unit3.project.course;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import unit3.project.student.Student;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name="course")
@@ -17,10 +23,19 @@ public class Course {
     String date;
     int hours;
     String room_id;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "courses")
+    private Collection<Student> students = new ArrayList<>();
+
+//    public Collection<Student> getStudents() {
+//        return students;
+//    }
+
     public Course() {
     }
 
-    public Course(String course_id, String name, String start_time, String end_time, String day, String final_exam_date, String date, int hours, String room_id) {
+    public Course(String course_id, String name, String start_time, String end_time, String day, String final_exam_date, String date, int hours, String room_id, Collection<Student> students) {
         this.course_id = course_id;
         this.name = name;
         this.start_time = start_time;
@@ -30,6 +45,7 @@ public class Course {
         this.date = date;
         this.hours = hours;
         this.room_id = room_id;
+        this.students = students;
     }
 
     public String getCourse_id() {

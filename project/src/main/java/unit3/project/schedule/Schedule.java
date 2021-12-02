@@ -11,6 +11,7 @@ public class Schedule {
     String start_time;
     String end_time;
 
+
     public Schedule() {
     }
 

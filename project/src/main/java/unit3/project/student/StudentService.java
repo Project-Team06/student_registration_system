@@ -3,6 +3,8 @@ package unit3.project.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import unit3.project.course.Course;
+import unit3.project.course.CourseRepository;
 
 import java.util.List;
 
@@ -10,11 +12,14 @@ import java.util.List;
 public class StudentService {
 
     private final StudentRepository StudentRepository;
+    private final CourseRepository courseRepository;
+
 
     @Autowired
-    public StudentService(StudentRepository StudentRepository) {
+    public StudentService(StudentRepository StudentRepository, CourseRepository courseRepository) {
 
         this.StudentRepository = StudentRepository;
+        this.courseRepository = courseRepository;
     }
 
     public List<Student> getStudent(){
@@ -50,4 +55,10 @@ public class StudentService {
         }
 
     }
+//    public void enrollStudent(Course course, Student student){
+//        Student student1 = StudentRepository.findById(student.getId()).orElse(null);
+//        Course course1 = courseRepository.findBycourse_id(course.getCourse_id());
+//        student1.getCourses().add(course1);
+//        StudentRepository.save(student1);
+//    }
 }
