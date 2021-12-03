@@ -1,16 +1,36 @@
 package unit3.project.instructor;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import unit3.project.course.Course;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name= "instructor")
 public class Instructor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String FName;
-    private String LName;
+    private String fname;
+    private String lname;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "instructors", fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL)
+    private Set<Course> course;
+
+    public Instructor(){
+
+    }
+
+    public Instructor(Long id, String fname, String lname, Set<Course> course) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.course = course;
+    }
 
     public Long getId() {
         return id;
@@ -21,28 +41,26 @@ public class Instructor {
     }
 
     public String getFName() {
-        return FName;
+        return fname;
     }
 
-    public void setFName(String FName) {
-        this.FName = FName;
+    public void setFName(String fname) {
+        this.fname = fname;
     }
 
     public String getLName() {
-        return LName;
+        return lname;
     }
 
-    public void setLName(String LName) {
-        this.LName = LName;
+    public void setLName(String lname) {
+        this.lname = lname;
     }
 
-    public Instructor(){
-
+    public Set<Course> getCourse() {
+        return course;
     }
 
-    public Instructor(Long id, String FName, String LName) {
-        this.id = id;
-        this.FName = FName;
-        this.LName = LName;
+    public void setCourse(Set<Course> course) {
+        this.course = course;
     }
 }

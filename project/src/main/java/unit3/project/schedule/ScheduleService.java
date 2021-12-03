@@ -26,8 +26,7 @@ public class ScheduleService {
     public Schedule updateSchedule(int id, Schedule data) {
         Schedule schedule= scheduleRepository.findById(id).orElse(null);
         if(schedule != null){
-            schedule.setStart_time(data.getStart_time());
-            schedule.setEnd_time(data.getEnd_time());
+
             scheduleRepository.save(schedule);
             return schedule;
         }
