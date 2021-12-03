@@ -1,14 +1,15 @@
 package unit3.project.course;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import unit3.project.instructor.Instructor;
+import unit3.project.schedule.Schedule;
 import unit3.project.student.Student;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name="course")
@@ -32,10 +33,19 @@ public class Course {
 //        return students;
 //    }
 
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "instructor_id", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE) // ارسل معلومات المدرس ID  في البوست مان Json
+    private Instructor instructors;
+
+
+    @ManyToMany
+    private List<Schedule> schedule;
+
     public Course() {
     }
 
-    public Course(String course_id, String name, String start_time, String end_time, String day, String final_exam_date, String date, int hours, String room_id, Collection<Student> students) {
+    public Course(String course_id, String name, String start_time, String end_time, String day, String final_exam_date, String date, int hours, String room_id, Collection<Student> students, Instructor instructors, List<Schedule> schedule) {
         this.course_id = course_id;
         this.name = name;
         this.start_time = start_time;
@@ -46,6 +56,8 @@ public class Course {
         this.hours = hours;
         this.room_id = room_id;
         this.students = students;
+        this.instructors = instructors;
+        this.schedule = schedule;
     }
 
     public String getCourse_id() {
@@ -118,5 +130,21 @@ public class Course {
 
     public void setRoom_id(String room_id) {
         this.room_id = room_id;
+    }
+
+    public Instructor getInstructors() {
+        return instructors;
+    }
+
+    public void setInstructors(Instructor instructors) {
+        this.instructors = instructors;
+    }
+
+    public List<Schedule> getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(List<Schedule> schedule) {
+        this.schedule = schedule;
     }
 }
