@@ -1,10 +1,12 @@
-import './App.css';
-import LogIn from './components/Login';
+import "./App.css";
+import LogIn from "./components/Login";
+import Table from "./components/Table";
 
 function App() {
   return (
     <>
-    <LogIn></LogIn>
+      <LogIn></LogIn>
+      {/* <Table></Table> */}
     </>
   );
 }
