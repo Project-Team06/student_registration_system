@@ -6,6 +6,7 @@ import { addSchedule } from "../reducers/schedule/schedule";
 import Item from "./Item";
 import Menu from "./Menu";
 import Course from "./Courses";
+import Worning from "./Worning";
 const list = [
   {
     id: "1",
@@ -43,15 +44,11 @@ function Table() {
       courses: state.courses.courses,
     };
   });
-  const state1 = useSelector((state) => {
-    return {
-      schedule: state.schedule.schedule,
-    };
-  });
+
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8081/course")
+      .get("http://localhost:8080/course")
       .then((response) => setCourses(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -74,6 +71,9 @@ function Table() {
         {state.courses.map((course) => {
           return <Course course={course} />;
         })}
+      </div>
+      <div>
+        <Worning />
       </div>
       <div>
         <button onClick={addCourses} className="addCoursesButton">
