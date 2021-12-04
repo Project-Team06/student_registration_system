@@ -636,3 +636,9 @@ Main components
   height: 200px;
   width: 300px;
 }
+
+.worning{
+  margin-left: 2%;
+  margin-top: 2%;
+  color:tomato;
+}

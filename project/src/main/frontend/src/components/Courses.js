@@ -1,14 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeCourse } from "../reducers/courses/courses";
 
 function Courses({ course }) {
   const dispatch = useDispatch();
-  const state = useSelector((state) => {
-    return {
-      courses: state.courses.courses,
-    };
-  });
-  console.log("in course item " + course.name);
+
   const removeClicked = () => {
     const action = removeCourse(course);
     dispatch(action);
