@@ -5,8 +5,8 @@ import Table from "./components/Table";
 function App() {
   return (
     <>
-      <LogIn></LogIn>
-      {/* <Table></Table> */}
+      {/* <LogIn></LogIn> */}
+      <Table></Table>
     </>
   );
 }
