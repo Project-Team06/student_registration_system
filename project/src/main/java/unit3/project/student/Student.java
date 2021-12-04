@@ -15,18 +15,17 @@ public class Student {
     private long id;
     private String fName;
     private String lName;
-    private String email;
-    private String gender;
+    private String password;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Course> courses = new ArrayList<>();
 
-    public Student(long id, String fName, String lName, String email, String gender, Collection<Course> courses) {
+    public Student(long id, String fName, String lName, String password, Collection<Course> courses) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
-        this.email = email;
-        this.gender = gender;
+        this.password = password;
         this.courses = courses;
     }
 
@@ -58,20 +57,12 @@ public class Student {
         this.lName = lName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Collection<Course> getCourses() {
@@ -90,15 +81,15 @@ public class Student {
 //        this.schedules = schedules;
 //    }
 
+
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
                 ", fName='" + fName + '\'' +
                 ", lName='" + lName + '\'' +
-                ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
+                ", password='" + password + '\'' +
+                ", courses=" + courses +
                 '}';
     }
-
 }

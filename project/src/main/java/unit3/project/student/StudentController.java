@@ -42,8 +42,5 @@ public class StudentController {
     public void updateStudent(@PathVariable String id, @RequestBody Student data){
         StudentService.updateStudent(id, data);
     }
-//    @PostMapping("/enroll")
-//    public void enrollStudent(Course course, Student student){
-//        StudentService.enrollStudent(course,student);
-//    }
+
 }
