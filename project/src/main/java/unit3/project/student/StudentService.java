@@ -49,16 +49,10 @@ public class StudentService {
         if (student != null){
             student.setfName(data.getfName());
             student.setlName(data.getlName());
-            student.setEmail(data.getEmail());
-            student.setGender(data.getGender());
+            student.setPassword(data.getPassword());
             StudentRepository.save(student);
         }
 
     }
-//    public void enrollStudent(Course course, Student student){
-//        Student student1 = StudentRepository.findById(student.getId()).orElse(null);
-//        Course course1 = courseRepository.findBycourse_id(course.getCourse_id());
-//        student1.getCourses().add(course1);
-//        StudentRepository.save(student1);
-//    }
+
 }

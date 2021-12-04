@@ -1,0 +1,71 @@
+[
+    {
+        "course_id":"CS 110T",
+        "name":"programming language",
+        "start_time":"8:00",
+        "end_time":"10:00",
+        "day":"Sunday",
+        "final_exam_date":"31/11/2021",
+        "date":"10/10/2021",
+        "hours":3,
+        "room_id":"111B",
+        "instructors":
+        {
+            "id":1,
+            "fname":"Besslan",
+            "lname":"Bzadough"
+            },
+        "schedule":
+        [
+            {
+                "schedule_id":2
+            }
+        ]
+            },
+            {
+                "course_id":"CS 212T",
+                "name":"Data Structure",
+                "start_time":"10:30",
+                "end_time":"12:00",
+                "day":"Sunday",
+                "final_exam_date":"31/11/2021",
+                "date":"10/10/2021",
+                "hours":3,
+                "room_id":"101T",
+            "instructors":
+            {
+                "id":2,
+                "fname":"Maryam",
+                "lname":"Balabeed"
+            },
+            "schedule":
+            [
+                {
+                "schedule_id":2
+                }
+            ]
+            },
+            {
+                "course_id":"CS 340T", 
+                "name":"Opearting System",
+                "start_time":"1:00",
+                "end_time":"2:00",
+                "day":"Monday",
+                "final_exam_date":"1/1/2021",
+                "date":"11/10/2021",
+                "hours":3,
+                "room_id":"100C",
+            "instructors":
+            {
+                "id":3,
+                "fname":"Amal",
+                "lname":"Meer"
+            },
+            "schedule":
+            [
+                {
+                "schedule_id":2
+                }
+            ]
+            }
+        ]

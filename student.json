@@ -1,0 +1,23 @@
+[
+    {
+    "id":1,
+    "fName":"Norah",
+    "lName":"Alogayil",
+    "password":"norah123",
+    "courses":[]
+},
+{
+    "id":2,
+    "fName":"shrooq",
+    "lName":"Alamri",
+    "password":"shrooq123",
+    "courses":[]
+},
+{
+    "id":3,
+    "fName":"Abdullah",
+    "lName":"Alhuseein",
+    "password":"abdullah123",
+    "courses":[]
+}
+]
