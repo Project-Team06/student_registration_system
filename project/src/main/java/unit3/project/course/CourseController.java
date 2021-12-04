@@ -7,6 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path= "course")
+@CrossOrigin("*")
 public class CourseController {
     private final CourseService courseService;
 
