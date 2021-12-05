@@ -25,7 +25,7 @@ function LogIn() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/students")
+      .get("http://localhost:8083/students")
       .then((response) => setData(response.data))
       .catch((error) => console.log(error));
   }, []);

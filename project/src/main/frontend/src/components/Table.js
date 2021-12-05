@@ -8,44 +8,11 @@ import monday, { AddToMonday } from "../reducers/days/monday";
 import tuesday, { AddToTuesday } from "../reducers/days/tuesday";
 import { AddToWednesday } from "../reducers/days/wednesday";
 import { AddToThursday } from "../reducers/days/thursday";
-import Item from "./Item";
 import Menu from "./Menu";
 import Courses from "./Courses";
 import Worning from "./Worning";
-import student from "../reducers/student/student";
 import { addWorning } from "../reducers/worning/worning";
 
-
-const list = [
-  {
-    id: "1",
-    courseName: "Programming language",
-    finalExamDate: new Date(2020, 1, 17),
-    roomID: "1c-350",
-    startTime: "3:00",
-    endTime: "5:00",
-    day: "Mon",
-  },
-  {
-    id: "2",
-    courseName: "Algorithm",
-    finalExamDate: new Date(2020, 1, 18),
-    roomID: "1c-349",
-    startTime: "1:00",
-    endTime: "3:40",
-    day: "Tue",
-  },
-  {
-    id: "3",
-    courseName: "Computer Architecture",
-    finalExamDate: new Date(2020, 1, 20),
-    roomID: "1c-344",
-    startTime: "3:00",
-    endTime: "5:00",
-    day: "Sun",
-  },
-];
-const list1 =[]
 function Table() {
   const dispatch = useDispatch();
 
@@ -56,42 +23,10 @@ function Table() {
   });
 
   const schedule = useSelector((state) => {
-
     return {
       schedule: state.schedule.schedule,
     };
   });
-
-
-  const sunday = useSelector((state)=>{
-    return{
-      sunday:state.sunday.sunday,
-    }
-  })
-
-  const monday = useSelector((state)=>{
-    return{
-      monday:state.monday.monday,
-    }
-  })
-
-  const tuesday = useSelector((state)=>{
-    return{
-      tuesday:state.tuesday.tuesday,
-    }
-  })
-
-  const wednesday = useSelector((state)=>{
-    return{
-      wednesday:state.wednesday.wednesday,
-    }
-  })
-
-  const thursday = useSelector((state)=>{
-    return{
-      thursday:state.thursday.thursday,
-    }
-  })
 
   const state2 = useSelector((state) => {
     return {
@@ -99,15 +34,16 @@ function Table() {
     };
   });
 
-
-
-
   const [courses, setCourses] = useState([]);
+  const [sun, setSun] = useState([]);
+  const [mon, setMon] = useState([]);
+  const [tues, setTues] = useState([]);
+  const [wed, setWed] = useState([]);
+  const [thur, setThur] = useState([]);
+
   useEffect(() => {
     axios
-
-      .get("http://localhost:8080/course")
-
+      .get("http://localhost:8083/course")
       .then((response) => setCourses(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -118,62 +54,103 @@ function Table() {
     dispatch(addWorning(""));
   };
   const addCourses = () => {
+    console.log(state.courses);
     const action = addSchedule(state.courses);
     dispatch(action);
-    console.log(schedule.schedule);
-    if(schedule.schedule.length != 0){
+    if (schedule.schedule.length != 0) {
       checkDays();
-      SortSun();
     }
-   
   };
   function checkDays() {
-    let arr = schedule.schedule[0];
-    
+    let arr = state.courses;
+    let sunArr = [];
+    let monArr = [];
+    let tuesArr = [];
+    let wedArr = [];
+    let thuArr = [];
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].day === "Sunday") {
-        const action = AddToSunday(arr[i]);
-        dispatch(action);
-      }
-      else if(arr[i].day === "Monday"){
-        const action = AddToMonday(arr[i]);
-        dispatch(action);
-    }
-    else if(arr[i].day === "Tuesday"){
-        const action = AddToTuesday(arr[i]);
-        dispatch(action);
-      }else if(arr[i].day === "Wednesday"){
-        const action = AddToWednesday(arr[i]);
-        dispatch(action);
-      }else if(arr[i].day === "Thursday"){
-        const action = AddToThursday(arr[i]);
-        dispatch(action);
-  }
-}
-  }//end of checkDays function
-
-  function SortSun(){
-    let sundayArray=sunday.sunday;
-    let temp=0;
-    console.log(sunday.sunday);
-    for (let i = 0; i < sundayArray.length; i++) {
-      console.log(sundayArray[i]);
-      if(sundayArray[i].startTime > sundayArray[i+1].startTime){
-         temp=sundayArray[i];
-         sundayArray[i]=sundayArray[i+1]
-         sundayArray[i+1]=temp
+        sunArr.push(arr[i]);
+      } else if (arr[i].day === "Monday") {
+        monArr.push(arr[i]);
+      } else if (arr[i].day === "Tuesday") {
+        tuesArr.push(arr[i]);
+      } else if (arr[i].day === "Wednesday") {
+        wedArr.push(arr[i]);
+      } else if (arr[i].day === "Thursday") {
+        thuArr.push(arr[i]);
       }
     }
-    
-  }
+    let temp = 0;
+    for (let i = 0; i < sunArr.length; i++) {
+      for (let j = i + 1; j < sunArr.length; j++) {
+        if (sunArr[i].start_time < sunArr[i + 1].start_time) {
+          temp = sunArr[i];
+          sunArr[i] = sunArr[i + 1];
+          sunArr[i + 1] = temp;
+        }
+      }
+    }
+    temp = 0;
+    for (let i = 0; i < monArr.length; i++) {
+      for (let j = i + 1; j < monArr.length; j++) {
+        if (monArr[i].start_time < monArr[i + 1].start_time) {
+          temp = monArr[i];
+          monArr[i] = monArr[i + 1];
+          monArr[i + 1] = temp;
+        }
+      }
+    }
+    temp = 0;
+    for (let i = 0; i < tuesArr.length; i++) {
+      for (let j = i + 1; j < tuesArr.length; j++) {
+        if (tuesArr[i].start_time < tuesArr[i + 1].start_time) {
+          temp = tuesArr[i];
+          tuesArr[i] = tuesArr[i + 1];
+          tuesArr[i + 1] = temp;
+        }
+      }
+    }
+    temp = 0;
+    for (let i = 0; i < wedArr.length; i++) {
+      for (let j = i + 1; j < wedArr.length; j++) {
+        if (wedArr[i].start_time < wedArr[i + 1].start_time) {
+          temp = wedArr[i];
+          wedArr[i] = wedArr[i + 1];
+          wedArr[i + 1] = temp;
+        }
+      }
+    }
+    temp = 0;
+    for (let i = 0; i < thuArr.length; i++) {
+      for (let j = i + 1; j < thuArr.length; j++) {
+        if (thuArr[i].start_time < thuArr[i + 1].start_time) {
+          temp = thuArr[i];
+          thuArr[i] = thuArr[i + 1];
+          thuArr[i + 1] = temp;
+        }
+      }
+    }
 
-  console.log("MONDAY ARRAY");
-  console.log(monday.monday);
+    setSun(sunArr);
+    setMon(monArr);
+    setTues(tuesArr);
+    setWed(wedArr);
+    setThur(thuArr);
+    dispatch(AddToSunday(sunArr));
+    dispatch(AddToMonday(monArr));
+    dispatch(AddToTuesday(tuesArr));
+    dispatch(AddToWednesday(wedArr));
+    dispatch(AddToThursday(thuArr));
+  } //end of checkDays function
+
   return (
     <div>
-
       <div className="welcome">
-      <h1> welcome: {state2.student[0].fName}   {state2.student[0].lName}</h1>
+        <h1>
+          {" "}
+          welcome: {state2.student[0].fName} {state2.student[0].lName}
+        </h1>
       </div>
       {/* Drop dowun meno */}
       <div className="menu">
@@ -181,9 +158,7 @@ function Table() {
       </div>
       <div className="alignCourses">
         {state.courses.map((course) => {
-
           return <Courses course={course} />;
-
         })}
       </div>
       <div>
@@ -206,13 +181,10 @@ function Table() {
                 <br />
                 Sun
               </div>
-
-              {sunday.sunday.map((course) => {
-                console.log(course);
-                if(course !=undefined){
+              {sun.map((course, i) => {
+                if (course != undefined) {
                   return <Courses course={course} />;
                 }
-
               })}
             </div>
           </div>
@@ -223,15 +195,12 @@ function Table() {
                 Mon
               </div>
 
-              {monday.monday.map((course) => {
+              {mon.map((course) => {
                 console.log(course);
-                if(course !=undefined){
+                if (course != undefined) {
                   return <Courses course={course} />;
-                };
-              //   else
-              // return null;
-              })} 
-
+                }
+              })}
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -240,17 +209,13 @@ function Table() {
                 <br />
                 Tue
               </div>
-
-              {tuesday.tuesday.map((course) => {
+              {tues.map((course) => {
                 console.log(course);
-                if(course !=undefined){
+                if (course != undefined) {
                   return <Courses course={course} />;
-                };
-              })} 
-
-
-              <br/>
-
+                }
+              })}
+              <br />
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -259,14 +224,12 @@ function Table() {
                 <br />
                 Wed
               </div>
-
-              {wednesday.wednesday.map((course) => {
+              {wed.map((course) => {
                 console.log(course);
-                if(course !=undefined){
+                if (course != undefined) {
                   return <Courses course={course} />;
-                };
-              })} 
-      
+                }
+              })}
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -275,18 +238,12 @@ function Table() {
                 <br />
                 Thu
               </div>
-
-              {thursday.thursday.map((course) => {
+              {thur.map((course) => {
                 console.log(course);
-                if(course !=undefined){
+                if (course != undefined) {
                   return <Courses course={course} />;
-                };
-              })} 
-              {/* {list.map((course) => {
-                if(course[4]!= undefined)
-                return <Courses course={course[4]}/>;
-              })} */}
-
+                }
+              })}
             </div>
           </div>
         </section>
