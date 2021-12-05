@@ -1,5 +1,5 @@
 function Item({ course }) {
-  console.log("in course item " + course.name);
+
   return (
     <div className="align">
       {/* course box */}

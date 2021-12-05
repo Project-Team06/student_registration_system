@@ -5,6 +5,7 @@ import Table from "./components/Table";
 
 function App() {
   return (
+
     <BrowserRouter>
       <div>
         <Routes>
@@ -16,6 +17,7 @@ function App() {
       </Routes>
       </div>
       </BrowserRouter>
+
   );
 }
 
