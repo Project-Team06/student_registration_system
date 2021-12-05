@@ -67,5 +67,110 @@
                 "schedule_id":2
                 }
             ]
+            },
+            {
+                "course_id": "IT 212T",
+                "name": "Computer Networks",
+                "start_time": "3:00",
+                "end_time": "5:00",
+                "day": "Tuesday",
+                "final_exam_date": "3/1/2021",
+                "date": "12/10/2021",
+                "hours": 3,
+                "room_id": "101T",
+                "instructors": {
+                    "id": 1,
+                    "fname": "Besslan",
+                    "lname": "Bzadough"
+                },
+                "schedule": [
+                    {
+                        "schedule_id": 2
+                    }
+                ]
+            },
+            {
+                "course_id": "IS 350T",
+                "name": "Project Management",
+                "start_time": "8:00",
+                "end_time": "10:00",
+                "day": "Wednesday",
+                "final_exam_date": "3/1/2021",
+                "date": "13/10/2021",
+                "hours": 4,
+                "room_id": "100C",
+                "instructors": {
+                    "id": 2,
+                    "fname": "Maryam",
+                    "lname": "Balabeed"
+                },
+                "schedule": [
+                    {
+                        "schedule_id": 2
+                    }
+                ]
+            },
+            {
+                "course_id": "IS 220T",
+                "name": "Database Fundamental",
+                "start_time": "10:30",
+                "end_time": "12:00",
+                "day": "Sunday",
+                "final_exam_date": "4/1/2021",
+                "date": "10/10/2021",
+                "hours": 2,
+                "room_id": "111B",
+                "instructors": {
+                    "id": 3,
+                    "fname": "Amal",
+                    "lname": "Meer"
+                },
+                "schedule": [
+                    {
+                        "schedule_id": 2
+                    }
+                ]
+            },
+            {
+                "course_id": "CS 105T",
+                "name": "Digital Logic Design",
+                "start_time": "10:00",
+                "end_time": "12:00",
+                "day": "Thursday",
+                "final_exam_date": "4/1/2021",
+                "date": "14/10/2021",
+                "hours": 4,
+                "room_id": "101T",
+                "instructors": {
+                    "id": 2,
+                    "fname": "Maryam",
+                    "lname": "Balabeed"
+                },
+                "schedule": [
+                    {
+                        "schedule_id": 2
+                    }
+                ]
+            },
+            {
+                "course_id": "CS 207T",
+                "name": "Computer Architecture",
+                "start_time": "10:10",
+                "end_time": "12:00",
+                "day": "Wednesday",
+                "final_exam_date": "8/1/2021",
+                "date": "13/10/2021",
+                "hours": 4,
+                "room_id": "100C",
+                "instructors": {
+                    "id": 3,
+                    "fname": "Amal",
+                    "lname": "Meer"
+                },
+                "schedule": [
+                    {
+                        "schedule_id": 2
+                    }
+                ]
             }
         ]
