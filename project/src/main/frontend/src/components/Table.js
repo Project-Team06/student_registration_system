@@ -1,5 +1,12 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCourses } from "../reducers/courses/courses";
+import { addSchedule } from "../reducers/schedule/schedule";
 import Item from "./Item";
-
+import Menu from "./Menu";
+import Course from "./Courses";
+import Worning from "./Worning";
 const list = [
   {
     id: "1",
@@ -30,66 +37,112 @@ const list = [
   },
 ];
 function Table() {
+  const dispatch = useDispatch();
+
+  const state = useSelector((state) => {
+    return {
+      courses: state.courses.courses,
+    };
+  });
+
+  const [courses, setCourses] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/course")
+      .then((response) => setCourses(response.data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  const removeCourses = () => {
+    const action = clearCourses();
+    dispatch(action);
+  };
+  const addCourses = () => {
+    const action = addSchedule(state.courses);
+    dispatch(action);
+  };
   return (
     <div>
-      <section id="cd-timeline" class="cd-container">
-        <div class="cd-timeline-block">
-          <div className="align">
-            <div class="cd-timeline-img cd-picture">
-              <br />
-              Sun
+      {/* Drop dowun meno */}
+      <div className="menu">
+        <Menu courses={courses} setCourses={setCourses} />
+      </div>
+      <div className="alignCourses">
+        {state.courses.map((course) => {
+          return <Course course={course} />;
+        })}
+      </div>
+      <div>
+        <Worning />
+      </div>
+      <div>
+        <button onClick={addCourses} className="addCoursesButton">
+          Add Courses
+        </button>
+        <button onClick={removeCourses} className="addCoursesButton">
+          Remove all
+        </button>
+      </div>
+      {/* table */}
+      <div>
+        <section id="cd-timeline" class="cd-container">
+          <div class="cd-timeline-block">
+            <div className="align">
+              <div class="cd-timeline-img cd-picture">
+                <br />
+                Sun
+              </div>
+              {list.map((course) => {
+                return <Item course={course} />;
+              })}
             </div>
-            {list.map((course) => {
-              return <Item course={course} />;
-            })}
           </div>
-        </div>
-        <div class="cd-timeline-block">
-          <div className="align">
-            <div class="cd-timeline-img cd-picture">
-              <br />
-              Mon
+          <div class="cd-timeline-block">
+            <div className="align">
+              <div class="cd-timeline-img cd-picture">
+                <br />
+                Mon
+              </div>
+              {list.map((course) => {
+                return <Item course={course} />;
+              })}
             </div>
-            {list.map((course) => {
-              return <Item course={course} />;
-            })}
           </div>
-        </div>
-        <div class="cd-timeline-block">
-          <div className="align">
-            <div class="cd-timeline-img cd-picture">
-              <br />
-              Tue
+          <div class="cd-timeline-block">
+            <div className="align">
+              <div class="cd-timeline-img cd-picture">
+                <br />
+                Tue
+              </div>
+              {list.map((course) => {
+                return <Item course={course} />;
+              })}
             </div>
-            {list.map((course) => {
-              return <Item course={course} />;
-            })}
           </div>
-        </div>
-        <div class="cd-timeline-block">
-          <div className="align">
-            <div class="cd-timeline-img cd-picture">
-              <br />
-              Wed
+          <div class="cd-timeline-block">
+            <div className="align">
+              <div class="cd-timeline-img cd-picture">
+                <br />
+                Wed
+              </div>
+              {list.map((course) => {
+                return <Item course={course} />;
+              })}
             </div>
-            {list.map((course) => {
-              return <Item course={course} />;
-            })}
           </div>
-        </div>
-        <div class="cd-timeline-block">
-          <div className="align">
-            <div class="cd-timeline-img cd-picture">
-              <br />
-              Thu
+          <div class="cd-timeline-block">
+            <div className="align">
+              <div class="cd-timeline-img cd-picture">
+                <br />
+                Thu
+              </div>
+              {list.map((course) => {
+                return <Item course={course} />;
+              })}
             </div>
-            {list.map((course) => {
-              return <Item course={course} />;
-            })}
           </div>
-        </div>
-      </section>
-      <div></div>
+        </section>
+      </div>
     </div>
   );
 }

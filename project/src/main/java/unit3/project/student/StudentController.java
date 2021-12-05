@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path="students")
+@CrossOrigin("*")
 public class StudentController {
 
     private final StudentService StudentService;
@@ -42,8 +43,5 @@ public class StudentController {
     public void updateStudent(@PathVariable String id, @RequestBody Student data){
         StudentService.updateStudent(id, data);
     }
-//    @PostMapping("/enroll")
-//    public void enrollStudent(Course course, Student student){
-//        StudentService.enrollStudent(course,student);
-//    }
+
 }
