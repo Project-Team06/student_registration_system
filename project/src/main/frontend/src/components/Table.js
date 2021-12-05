@@ -48,7 +48,7 @@ function Table() {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/course")
+      .get("http://localhost:8083/course")
       .then((response) => setCourses(response.data))
       .catch((error) => console.log(error));
   }, []);
