@@ -9,6 +9,7 @@ import Menu from "./Menu";
 import Courses from "./Courses";
 
 import Worning from "./Worning";
+import { addWorning } from "../reducers/worning/worning";
 const list = [
   {
     id: "1",
@@ -69,6 +70,7 @@ function Table() {
   const removeCourses = () => {
     const action = clearCourses();
     dispatch(action);
+    dispatch(addWorning(""));
   };
   const addCourses = () => {
     const action = addSchedule(state.courses);
