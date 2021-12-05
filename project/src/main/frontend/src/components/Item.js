@@ -1,5 +1,5 @@
 function Item({ course }) {
-    
+
   return (
     <div className="align">
       {/* course box */}
