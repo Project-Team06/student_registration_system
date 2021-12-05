@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCourses } from "../reducers/courses/courses";
+
 import schedule, { addSchedule } from "../reducers/schedule/schedule";
 import Item from "./Item";
 import Menu from "./Menu";
 import Courses from "./Courses";
+
 import Worning from "./Worning";
 const list = [
   {
@@ -45,6 +47,7 @@ function Table() {
       courses: state.courses.courses,
     };
   });
+
   const state1 = useSelector((state) => {
     return {
       schedule: state.schedule.schedule,
@@ -52,10 +55,13 @@ function Table() {
   });
 
 
+
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8083/course")
+
+      .get("http://localhost:8080/course")
+
       .then((response) => setCourses(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -76,7 +82,9 @@ function Table() {
       </div>
       <div className="alignCourses">
         {state.courses.map((course) => {
+
           return <Courses course={course} />;
+
         })}
       </div>
       <div>
@@ -99,9 +107,11 @@ function Table() {
                 <br />
                 Sun
               </div>
+
               <br/>
               {state1.schedule.map((course) => {
                 return <Courses course={course[0]} />;
+
               })}
             </div>
           </div>
@@ -111,10 +121,12 @@ function Table() {
                 <br />
                 Mon
               </div>
+
               <br/>
               {/* {list.map((course) => {
                 return <Item course={course} />;
               })} */}
+
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -123,10 +135,12 @@ function Table() {
                 <br />
                 Tue
               </div>
+
               <br/>
               {/* {list.map((course) => {
                 return <Item course={course} />;
               })} */}
+
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -135,10 +149,12 @@ function Table() {
                 <br />
                 Wed
               </div>
+
               <br/>
               {/* {list.map((course) => {
                 return <Item course={course} />;
               })} */}
+
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -147,7 +163,9 @@ function Table() {
                 <br />
                 Thu
               </div>
+
               <br/>
+
               {list.map((course) => {
                 return <Item course={course} />;
               })}
