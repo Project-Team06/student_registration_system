@@ -39,7 +39,6 @@ const list = [
     day: "Sun",
   },
 ];
-const list1 =[]
 function Table() {
   const dispatch = useDispatch();
 
