@@ -9,7 +9,11 @@ import Menu from "./Menu";
 import Courses from "./Courses";
 
 import Worning from "./Worning";
+
+import student from "../reducers/student/student";
+
 import { addWorning } from "../reducers/worning/worning";
+
 const list = [
   {
     id: "1",
@@ -55,6 +59,12 @@ function Table() {
     };
   });
 
+  const state2 = useSelector((state) => {
+    return {
+      student: state.student.student,
+    };
+  });
+
 
 
   const [courses, setCourses] = useState([]);
@@ -78,6 +88,10 @@ function Table() {
   };
   return (
     <div>
+
+      <div className="welcome">
+      <h1> welcome: {state2.student[0].fName}   {state2.student[0].lName}</h1>
+      </div>
       {/* Drop dowun meno */}
       <div className="menu">
         <Menu courses={courses} setCourses={setCourses} />
