@@ -6,13 +6,16 @@ import { addSchedule } from "../reducers/schedule/schedule";
 import sunday, { AddToSunday } from "../reducers/days/sunday";
 import monday, { AddToMonday } from "../reducers/days/monday";
 import tuesday, { AddToTuesday } from "../reducers/days/tuesday";
-import Item from "./Item";
-import Menu from "./Menu";
-import Course from "./Courses";
-import Worning from "./Worning";
-import Courses from "./Courses";
 import { AddToWednesday } from "../reducers/days/wednesday";
 import { AddToThursday } from "../reducers/days/thursday";
+import Item from "./Item";
+import Menu from "./Menu";
+import Courses from "./Courses";
+import Worning from "./Worning";
+import student from "../reducers/student/student";
+import { addWorning } from "../reducers/worning/worning";
+
+
 const list = [
   {
     id: "1",
@@ -42,6 +45,7 @@ const list = [
     day: "Sun",
   },
 ];
+const list1 =[]
 function Table() {
   const dispatch = useDispatch();
 
@@ -52,10 +56,12 @@ function Table() {
   });
 
   const schedule = useSelector((state) => {
+
     return {
       schedule: state.schedule.schedule,
     };
   });
+
 
   const sunday = useSelector((state)=>{
     return{
@@ -87,10 +93,21 @@ function Table() {
     }
   })
 
+  const state2 = useSelector((state) => {
+    return {
+      student: state.student.student,
+    };
+  });
+
+
+
+
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     axios
+
       .get("http://localhost:8080/course")
+
       .then((response) => setCourses(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -98,6 +115,7 @@ function Table() {
   const removeCourses = () => {
     const action = clearCourses();
     dispatch(action);
+    dispatch(addWorning(""));
   };
   const addCourses = () => {
     const action = addSchedule(state.courses);
@@ -153,13 +171,19 @@ function Table() {
   console.log(monday.monday);
   return (
     <div>
+
+      <div className="welcome">
+      <h1> welcome: {state2.student[0].fName}   {state2.student[0].lName}</h1>
+      </div>
       {/* Drop dowun meno */}
       <div className="menu">
         <Menu courses={courses} setCourses={setCourses} />
       </div>
       <div className="alignCourses">
         {state.courses.map((course) => {
-          return <Course course={course} />;
+
+          return <Courses course={course} />;
+
         })}
       </div>
       <div>
@@ -188,6 +212,7 @@ function Table() {
                 if(course !=undefined){
                   return <Courses course={course} />;
                 }
+
               })}
             </div>
           </div>
@@ -197,6 +222,7 @@ function Table() {
                 <br />
                 Mon
               </div>
+
               {monday.monday.map((course) => {
                 console.log(course);
                 if(course !=undefined){
@@ -205,6 +231,7 @@ function Table() {
               //   else
               // return null;
               })} 
+
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -213,13 +240,17 @@ function Table() {
                 <br />
                 Tue
               </div>
-              
+
               {tuesday.tuesday.map((course) => {
                 console.log(course);
                 if(course !=undefined){
                   return <Courses course={course} />;
                 };
               })} 
+
+
+              <br/>
+
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -228,16 +259,14 @@ function Table() {
                 <br />
                 Wed
               </div>
+
               {wednesday.wednesday.map((course) => {
                 console.log(course);
                 if(course !=undefined){
                   return <Courses course={course} />;
                 };
               })} 
-              {/* {days.days.map((course) => {
-               if(course[3]!= undefined)
-               return <Courses course={course[3]}/>;
-              })} */}
+      
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -246,6 +275,7 @@ function Table() {
                 <br />
                 Thu
               </div>
+
               {thursday.thursday.map((course) => {
                 console.log(course);
                 if(course !=undefined){
@@ -256,6 +286,7 @@ function Table() {
                 if(course[4]!= undefined)
                 return <Courses course={course[4]}/>;
               })} */}
+
             </div>
           </div>
         </section>

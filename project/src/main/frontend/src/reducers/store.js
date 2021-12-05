@@ -7,7 +7,9 @@ import monday from "./days/monday";
 import tuesday from "./days/tuesday";
 import wednesday from "./days/wednesday";
 import thursday from "./days/thursday";
-const reducers = combineReducers({ courses, schedule, worning ,sunday,monday,tuesday,wednesday,thursday });
+import student from "./student/student"
+const reducers = combineReducers({ courses, schedule, worning ,sunday,monday,tuesday,wednesday,thursday,student });
+
 
 const store = createStore(reducers);
 
