@@ -3,10 +3,16 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCourses } from "../reducers/courses/courses";
 import { addSchedule } from "../reducers/schedule/schedule";
+import sunday, { AddToSunday } from "../reducers/days/sunday";
+import monday, { AddToMonday } from "../reducers/days/monday";
+import tuesday, { AddToTuesday } from "../reducers/days/tuesday";
 import Item from "./Item";
 import Menu from "./Menu";
 import Course from "./Courses";
 import Worning from "./Worning";
+import Courses from "./Courses";
+import { AddToWednesday } from "../reducers/days/wednesday";
+import { AddToThursday } from "../reducers/days/thursday";
 const list = [
   {
     id: "1",
@@ -45,6 +51,42 @@ function Table() {
     };
   });
 
+  const schedule = useSelector((state) => {
+    return {
+      schedule: state.schedule.schedule,
+    };
+  });
+
+  const sunday = useSelector((state)=>{
+    return{
+      sunday:state.sunday.sunday,
+    }
+  })
+
+  const monday = useSelector((state)=>{
+    return{
+      monday:state.monday.monday,
+    }
+  })
+
+  const tuesday = useSelector((state)=>{
+    return{
+      tuesday:state.tuesday.tuesday,
+    }
+  })
+
+  const wednesday = useSelector((state)=>{
+    return{
+      wednesday:state.wednesday.wednesday,
+    }
+  })
+
+  const thursday = useSelector((state)=>{
+    return{
+      thursday:state.thursday.thursday,
+    }
+  })
+
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     axios
@@ -60,7 +102,55 @@ function Table() {
   const addCourses = () => {
     const action = addSchedule(state.courses);
     dispatch(action);
+    console.log(schedule.schedule);
+    if(schedule.schedule.length != 0){
+      checkDays();
+      SortSun();
+    }
+   
   };
+  function checkDays() {
+    let arr = schedule.schedule[0];
+    
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].day === "Sunday") {
+        const action = AddToSunday(arr[i]);
+        dispatch(action);
+      }
+      else if(arr[i].day === "Monday"){
+        const action = AddToMonday(arr[i]);
+        dispatch(action);
+    }
+    else if(arr[i].day === "Tuesday"){
+        const action = AddToTuesday(arr[i]);
+        dispatch(action);
+      }else if(arr[i].day === "Wednesday"){
+        const action = AddToWednesday(arr[i]);
+        dispatch(action);
+      }else if(arr[i].day === "Thursday"){
+        const action = AddToThursday(arr[i]);
+        dispatch(action);
+  }
+}
+  }//end of checkDays function
+
+  function SortSun(){
+    let sundayArray=sunday.sunday;
+    let temp=0;
+    console.log(sunday.sunday);
+    for (let i = 0; i < sundayArray.length; i++) {
+      console.log(sundayArray[i]);
+      if(sundayArray[i].startTime > sundayArray[i+1].startTime){
+         temp=sundayArray[i];
+         sundayArray[i]=sundayArray[i+1]
+         sundayArray[i+1]=temp
+      }
+    }
+    
+  }
+
+  console.log("MONDAY ARRAY");
+  console.log(monday.monday);
   return (
     <div>
       {/* Drop dowun meno */}
@@ -92,8 +182,12 @@ function Table() {
                 <br />
                 Sun
               </div>
-              {list.map((course) => {
-                return <Item course={course} />;
+
+              {sunday.sunday.map((course) => {
+                console.log(course);
+                if(course !=undefined){
+                  return <Courses course={course} />;
+                }
               })}
             </div>
           </div>
@@ -103,9 +197,14 @@ function Table() {
                 <br />
                 Mon
               </div>
-              {list.map((course) => {
-                return <Item course={course} />;
-              })}
+              {monday.monday.map((course) => {
+                console.log(course);
+                if(course !=undefined){
+                  return <Courses course={course} />;
+                };
+              //   else
+              // return null;
+              })} 
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -114,9 +213,13 @@ function Table() {
                 <br />
                 Tue
               </div>
-              {list.map((course) => {
-                return <Item course={course} />;
-              })}
+              
+              {tuesday.tuesday.map((course) => {
+                console.log(course);
+                if(course !=undefined){
+                  return <Courses course={course} />;
+                };
+              })} 
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -125,9 +228,16 @@ function Table() {
                 <br />
                 Wed
               </div>
-              {list.map((course) => {
-                return <Item course={course} />;
-              })}
+              {wednesday.wednesday.map((course) => {
+                console.log(course);
+                if(course !=undefined){
+                  return <Courses course={course} />;
+                };
+              })} 
+              {/* {days.days.map((course) => {
+               if(course[3]!= undefined)
+               return <Courses course={course[3]}/>;
+              })} */}
             </div>
           </div>
           <div class="cd-timeline-block">
@@ -136,9 +246,16 @@ function Table() {
                 <br />
                 Thu
               </div>
-              {list.map((course) => {
-                return <Item course={course} />;
-              })}
+              {thursday.thursday.map((course) => {
+                console.log(course);
+                if(course !=undefined){
+                  return <Courses course={course} />;
+                };
+              })} 
+              {/* {list.map((course) => {
+                if(course[4]!= undefined)
+                return <Courses course={course[4]}/>;
+              })} */}
             </div>
           </div>
         </section>
