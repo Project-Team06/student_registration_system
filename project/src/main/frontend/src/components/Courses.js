@@ -23,39 +23,9 @@ function Courses({ course }) {
           <br />
           Time: {course.start_time} - {course.end_time}
           <br />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           Final exam date: {course.final_exam_date}
           <br />
           Instructor: {course.instructors.fname} {course.instructors.lname}
-
           <div>
             <button
               onClick={removeClicked}
