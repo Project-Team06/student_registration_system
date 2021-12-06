@@ -9,6 +9,9 @@ function Edit(){
     const [fName, setFName] = useState();
     const [lName, setlName] = useState();
     const [password, setPassword] = useState();
+    const [password2, setPassword2] = useState();
+    const errorMsg = document.querySelector(".error-msg");
+    const successMsg = document.querySelector(".success-msg");
 
     const state = useSelector((state) => {
         return {
@@ -33,9 +36,14 @@ function Edit(){
         setPassword(e.target.value);
     }
 
+    const studentPassword2 = (e) =>{
+        setPassword2(e.target.value);
+    }
+
     const inputData = (e) =>{
         e.preventDefault();
 
+        if(password == password2){
         let data ={
             id: 4,
             fName: fName,
@@ -52,10 +60,18 @@ function Edit(){
 
         
         axios.put(`http://localhost:8080/students/${id}`, data)
-        
           .catch((error) => console.log(error));
 
+          successMsg.style.opacity = 1;
+          errorMsg.style.opacity = 0;
+
+    }
+    else{
         
+        errorMsg.style.opacity = 1;
+        successMsg.style.opacity = 0;
+    }
+    
        
 
     }
@@ -71,10 +87,15 @@ function Edit(){
 
     return (
         <div>
+           
             <div>
             <Link to="/Table">
              <h1 className="go_back">Go back</h1>
             </Link>
+            </div>
+
+            <div className="success-msg">
+            <b>Success!</b> The password has been changed successfully
             </div>
             
           <div class="login">
@@ -102,10 +123,17 @@ function Edit(){
                 required="required"
                
               />
-               <div id="login-error-msg-holder">
-              
-    
-                </div>
+               <input
+                type="text"
+                onChange={studentPassword2}
+                name="password"
+                placeholder="Retype the password"
+                required="required"
+           
+            />
+               <div id="error-msg-holder">
+                <p className="error-msg">Password does not match</p>
+                </div>            
               <button type="submit" onClick={inputData} className="btn btn-primary btn-block btn-large">
               Edit
                  { /*result ? <Link to="/Table"></Link>  : console.log() */}

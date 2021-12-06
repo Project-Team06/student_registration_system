@@ -68,7 +68,7 @@ body {
   LOG IN 
   
 */
-#login-error-msg {
+.error-msg {
 
   color: red;
   margin-top: -3px;
@@ -87,6 +87,14 @@ body {
   color: #d7e4ed;
   margin-left: 700px;
   margin-top: -43px;
+}
+.success-msg {
+  color: #270;
+  background-color: #DFF2BF;
+  margin-left: 1150px;
+  margin-right: 90px;
+  padding: 10px;
+  opacity: 0;
 }
 
 .btn {
