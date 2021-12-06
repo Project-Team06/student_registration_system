@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCourses } from "../reducers/courses/courses";
@@ -43,7 +44,7 @@ function Table() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8083/course")
+      .get("http://localhost:8080/course")
       .then((response) => setCourses(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -152,6 +153,11 @@ function Table() {
           {" "}
           welcome: {state2.student[0].fName} {state2.student[0].lName}
         </h1>
+        <div>
+            <Link to="/Edit">
+             <h1 className="go_edit">Edit Student Information</h1>
+            </Link>
+            </div>
       </div>
       {/* Drop dowun meno */}
       <div className="menu">
