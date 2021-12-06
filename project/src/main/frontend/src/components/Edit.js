@@ -59,7 +59,7 @@ function Edit(){
         console.log(data);
 
         
-        axios.put(`http://localhost:8080/students/${id}`, data)
+        axios.put(`http://localhost:8083/students/${id}`, data)
           .catch((error) => console.log(error));
 
           successMsg.style.opacity = 1;

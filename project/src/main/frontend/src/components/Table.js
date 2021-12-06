@@ -46,7 +46,7 @@ function Table() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/course")
+      .get("http://localhost:8083/course")
       .then((response) => setCourses(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -56,6 +56,7 @@ function Table() {
     dispatch(action);
     dispatch(addWorning(""));
   };
+
   const addCourses = () => {
     // console.log(state.courses);
     // const action = addSchedule(state.courses);
@@ -65,6 +66,7 @@ function Table() {
     // }
     checkDays();
    navigate("/course");
+
 
   };
   function checkDays() {
@@ -137,6 +139,7 @@ function Table() {
         }
       }
     }
+
 
     setSun(sunArr);
     setMon(monArr);
