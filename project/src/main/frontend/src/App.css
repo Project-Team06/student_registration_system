@@ -68,15 +68,33 @@ body {
   LOG IN 
   
 */
-#login-error-msg {
+.error-msg {
 
-  margin-top: 1px;
-  margin-bottom: 1px;
+  color: red;
+  margin-top: -3px;
+  margin-bottom: 3px;
   font-size: 12px;
   opacity: 0;
 }
 .welcome{
   text-align: center;
+}
+.go_back{
+  color: #d7e4ed;
+  margin-left: 50px;
+}
+.go_edit{
+  color: #d7e4ed;
+  margin-left: 700px;
+  margin-top: -43px;
+}
+.success-msg {
+  color: #270;
+  background-color: #DFF2BF;
+  margin-left: 1150px;
+  margin-right: 90px;
+  padding: 10px;
+  opacity: 0;
 }
 
 .btn {

@@ -13,7 +13,7 @@ function LogIn() {
   const [studentPassword, setPassword] = useState();
   const [data, setData] = useState();
   const navigate = useNavigate();
-  const loginErrorMsg = document.getElementById("login-error-msg");
+  const errorMsg = document.querySelector(".error-msg");
   let result = false
 
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ function LogIn() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8083/students")
+      .get("http://localhost:8080/students")
       .then((response) => setData(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -65,7 +65,7 @@ function LogIn() {
    e.preventDefault();
    if(result == false){
    //alert("The password or username is wrong")
-   loginErrorMsg.style.opacity = 1;
+   errorMsg.style.opacity = 1;
    }
    
    e.preventDefault(); 
@@ -93,9 +93,8 @@ function LogIn() {
             required="required"
            
           />
-           <div id="login-error-msg-holder">
-           <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
-
+           <div id="error-msg-holder">
+           <p className="error-msg">Invalid username and/or password</p>
             </div>
           <button type="submit" onClick={verification} className="btn btn-primary btn-block btn-large">
           Log in
