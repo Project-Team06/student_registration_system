@@ -164,7 +164,6 @@ function Table() {
          sundayArray[i+1]=temp
       }
     }
-    
   }
 
   console.log("MONDAY ARRAY");
