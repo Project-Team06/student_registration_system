@@ -13,9 +13,11 @@ import Menu from "./Menu";
 import Courses from "./Courses";
 import Worning from "./Worning";
 import { addWorning } from "../reducers/worning/worning";
+import {  useNavigate   } from 'react-router-dom';
 
 function Table() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const state = useSelector((state) => {
     return {
@@ -23,7 +25,7 @@ function Table() {
     };
   });
 
-  const schedule = useSelector((state) => {
+  const state1 = useSelector((state) => {
     return {
       schedule: state.schedule.schedule,
     };
@@ -54,13 +56,18 @@ function Table() {
     dispatch(action);
     dispatch(addWorning(""));
   };
-  const  addCourses = () => {
-    console.log(state.courses);
-    const action = addSchedule(state.courses);
-    dispatch(action);
-    if (schedule.schedule.length != 0) {
-      checkDays();
-    }
+
+  const addCourses = () => {
+    // console.log(state.courses);
+    // const action = addSchedule(state.courses);
+    // dispatch(action);
+    // if (schedule.schedule.length != 0) {
+    //   checkDays();
+    // }
+    checkDays();
+   navigate("/course");
+
+
   };
   function checkDays() {
     let arr = state.courses;
@@ -139,11 +146,18 @@ function Table() {
     setTues(tuesArr);
     setWed(wedArr);
     setThur(thuArr);
-    dispatch(AddToSunday(sunArr));
-    dispatch(AddToMonday(monArr));
-    dispatch(AddToTuesday(tuesArr));
-    dispatch(AddToWednesday(wedArr));
-    dispatch(AddToThursday(thuArr));
+    let finalScedule = [sunArr,monArr,tuesArr,wedArr,thuArr]
+        const action = addSchedule(finalScedule);
+    dispatch(action);
+    console.log(state1.schedule);
+    // const action2 = AddToSunday(sunArr);
+    // dispatch(action2);
+    // console.log(state1.schedule);
+    // dispatch(AddToSunday(sunArr));
+    // dispatch(AddToMonday(monArr));
+    // dispatch(AddToTuesday(tuesArr));
+    // dispatch(AddToWednesday(wedArr));
+    // dispatch(AddToThursday(thuArr));
   } //end of checkDays function
 
   return (
@@ -180,7 +194,7 @@ function Table() {
         </button>
       </div>
       {/* table */}
-      <div>
+      {/* <div>
         <section id="cd-timeline" class="cd-container">
           <div class="cd-timeline-block">
             <div className="align">
@@ -254,7 +268,7 @@ function Table() {
             </div>
           </div>
         </section>
-      </div>
+      </div> */}
     </div>
   );
 }
