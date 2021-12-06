@@ -90,7 +90,7 @@ function Edit(){
            
             <div>
             <Link to="/Table">
-             <h1 className="go_back">Go back</h1>
+            <img  className="backimg" src="https://cdn-icons-png.flaticon.com/128/1053/1053188.png"/>
             </Link>
             </div>
 
