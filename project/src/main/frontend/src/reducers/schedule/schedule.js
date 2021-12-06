@@ -16,8 +16,6 @@ const initialState = {
   export default schedule;
   
   export const addSchedule = (schedule) => {
-      console.log("new schedule added");
-      console.log(schedule);
     return {
       type: "ADD_SCHEDULE",
       payload: schedule,
