@@ -1,6 +1,6 @@
 import Item from "./Item";
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 function Course({ course }) {
   const state = useSelector((state) => {
     return {
@@ -9,6 +9,17 @@ function Course({ course }) {
   });
   return (
     <div>
+     
+            <Link to="/Table">
+              <div className="backimg">
+              <img  className="backimg" src="https://cdn-icons-png.flaticon.com/128/1053/1053188.png"/>
+             {/* <h1 className="go_back">Go back</h1> */}
+             </div>
+            </Link>
+           
+    <div className="SSh1">
+      <h1>Student Schedule</h1>
+      </div>
       <div>
         <section id="cd-timeline" class="cd-container">
           <div class="cd-timeline-block">

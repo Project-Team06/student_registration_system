@@ -165,11 +165,12 @@ function Table() {
       <div className="welcome">
         <h1>
           {" "}
-          welcome: {state2.student[0].fName} {state2.student[0].lName}
+          Welcome {state2.student[0].fName} {state2.student[0].lName}
         </h1>
         <div>
             <Link to="/Edit">
-             <h1 className="go_edit">Edit Student Information</h1>
+              <img className="go_edit" src="https://cdn-icons-png.flaticon.com/128/1470/1470920.png"/>
+             {/* <h1 className="go_edit">Edit Student Information</h1> */}
             </Link>
             </div>
       </div>

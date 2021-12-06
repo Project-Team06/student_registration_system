@@ -89,6 +89,8 @@ body {
   color: #d7e4ed;
   margin-left: 700px;
   margin-top: -43px;
+  width: 40px;
+  height: 40px;
 }
 .success-msg {
   color: #270;
@@ -647,4 +649,15 @@ Main components
   margin-left: 2%;
   margin-top: 2%;
   color:tomato;
+}
+.SSh1{
+  font-size: 18px;
+  text-align: center;
+  }
+  .backimg{
+margin-left: 40px;
+width: 40px;
+height: 40px;
+margin-top: 20px;
+
 }
